@@ -51,7 +51,7 @@ $genderCounts = countGenderMembers($data['members'] ?? []);
     <nav class="navbar scrolled no-print">
         <div class="container">
             <a href="index.html" class="navbar-brand">
-                <img src="assets/images/university-logo.png" alt="Sanjivani University Logo" width="44" height="44">
+                <img src="logo/DCAC_LOGO.jpeg" alt="DCAC Logo" width="44" height="44">
                 <div class="brand-text">
                     <span class="brand-name">SANJIVANI</span>
                     <span class="brand-sub">UNIVERSITY</span>
