@@ -110,14 +110,14 @@ function validateContactMessage(string $message): ?string
     return null;
 }
 
-function validateUploadedImage(array $file): ?string
+function validateUploadedImage(array $file, string $label = 'Payment screenshot'): ?string
 {
     if ($file['error'] !== UPLOAD_ERR_OK) {
-        return 'Failed to upload payment screenshot. Please try again.';
+        return 'Failed to upload ' . $label . '. Please try again.';
     }
 
     if ($file['size'] > MAX_UPLOAD_SIZE) {
-        return 'Payment screenshot must not exceed 5 MB.';
+        return $label . ' must not exceed 5 MB.';
     }
 
     $allowedMimes = ['image/jpeg', 'image/jpg', 'image/png'];

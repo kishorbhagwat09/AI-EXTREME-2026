@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS site_settings (
     regular_fee DECIMAL(10, 2) DEFAULT 250.00,
     upi_id VARCHAR(100) DEFAULT 'YOUR-UPI-ID@upi',
     qr_image VARCHAR(255) DEFAULT 'assets/images/payment-qr.png',
+    poster_image VARCHAR(255) DEFAULT 'assets/images/event-poster.jpg',
     official_email VARCHAR(100) DEFAULT 'OFFICIAL_EMAIL',
     official_phone VARCHAR(20) DEFAULT 'OFFICIAL_PHONE',
     problem_statements_published TINYINT(1) DEFAULT 0,
@@ -103,12 +104,12 @@ CREATE TABLE IF NOT EXISTS problem_statements (
 INSERT INTO site_settings (
     event_name, event_date, problem_release_date,
     early_bird_fee, early_bird_deadline, regular_fee,
-    upi_id, qr_image, official_email, official_phone,
+    upi_id, qr_image, poster_image, official_email, official_phone,
     problem_statements_published
 ) VALUES (
     'AI Extreme 2026', '2026-10-14', '2026-10-02',
     200.00, '2026-09-20', 250.00,
-    'YOUR-UPI-ID@upi', 'assets/images/payment-qr.png',
+    'YOUR-UPI-ID@upi', 'assets/images/payment-qr.png', 'assets/images/event-poster.jpg',
     'OFFICIAL_EMAIL', 'OFFICIAL_PHONE', 0
 );
 

@@ -9,6 +9,7 @@ require_once __DIR__ . '/security.php';
 function getSiteSettings(): array
 {
     $db = getDB();
+    ensureSiteMediaColumns($db);
     $stmt = $db->query('SELECT * FROM site_settings ORDER BY id ASC LIMIT 1');
     $settings = $stmt->fetch();
 
@@ -22,6 +23,7 @@ function getSiteSettings(): array
             'regular_fee'                  => 250,
             'upi_id'                       => 'YOUR-UPI-ID@upi',
             'qr_image'                     => 'assets/images/payment-qr.png',
+            'poster_image'                => 'assets/images/event-poster.jpg',
             'official_email'               => 'OFFICIAL_EMAIL',
             'official_phone'               => 'OFFICIAL_PHONE',
             'problem_statements_published' => 0,
@@ -29,6 +31,22 @@ function getSiteSettings(): array
     }
 
     return $settings;
+}
+
+function ensureSiteMediaColumns(PDO $db): void
+{
+    static $checked = false;
+    if ($checked) {
+        return;
+    }
+
+    $stmt = $db->prepare("SELECT COUNT(*) FROM information_schema.columns WHERE table_schema = DATABASE() AND table_name = 'site_settings' AND column_name = 'poster_image'");
+    $stmt->execute();
+    if ((int) $stmt->fetchColumn() === 0) {
+        $db->exec("ALTER TABLE site_settings ADD COLUMN poster_image VARCHAR(255) DEFAULT 'assets/images/event-poster.jpg' AFTER qr_image");
+    }
+
+    $checked = true;
 }
 
 function calculateRegistrationFee(?array $settings = null): float
@@ -161,6 +179,38 @@ function saveUploadedPayment(array $file): string
     }
 
     return UPLOAD_URL . $filename;
+}
+
+function saveUploadedSiteImage(array $file): string
+{
+    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    if ($ext === 'jpeg') {
+        $ext = 'jpg';
+    }
+
+    $filename = bin2hex(random_bytes(16)) . '.' . $ext;
+    if (!is_dir(SITE_MEDIA_PATH)) {
+        mkdir(SITE_MEDIA_PATH, 0755, true);
+    }
+
+    if (!move_uploaded_file($file['tmp_name'], SITE_MEDIA_PATH . $filename)) {
+        throw new RuntimeException('Failed to save site image.');
+    }
+
+    return SITE_MEDIA_URL . $filename;
+}
+
+function deleteUploadedSiteImage(string $path): void
+{
+    if (strpos($path, SITE_MEDIA_URL) !== 0) {
+        return;
+    }
+
+    $filename = basename($path);
+    $fullPath = SITE_MEDIA_PATH . $filename;
+    if (is_file($fullPath)) {
+        unlink($fullPath);
+    }
 }
 
 function getDashboardStats(): array

@@ -172,6 +172,16 @@
     overflow: hidden;
 }
 
+.settings-media-preview {
+    display: block;
+    max-width: 220px;
+    max-height: 220px;
+    margin-top: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    object-fit: contain;
+}
+
 .admin-card-header {
     display: flex;
     justify-content: space-between;

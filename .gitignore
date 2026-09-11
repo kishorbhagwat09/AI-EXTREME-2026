@@ -1,3 +1,4 @@
 config.php
 uploads/payments/*
+uploads/site-media/*
 !.gitkeep

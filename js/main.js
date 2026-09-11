@@ -7,7 +7,23 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initParticles();
     initScrollAnimations();
+    initSiteMedia();
 });
+
+function initSiteMedia() {
+    const poster = document.getElementById('event-poster-image');
+    const posterLink = document.getElementById('event-poster-link');
+    if (!poster || !posterLink) return;
+
+    fetch('php/site-media.php', { headers: { Accept: 'application/json' } })
+        .then(response => response.ok ? response.json() : Promise.reject(new Error('Unable to load site media')))
+        .then(media => {
+            if (!media.poster_image) return;
+            poster.src = media.poster_image;
+            posterLink.href = media.poster_image;
+        })
+        .catch(() => {});
+}
 
 function initNavbar() {
     const navbar = document.querySelector('.navbar');
