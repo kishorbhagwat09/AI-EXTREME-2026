@@ -15,12 +15,16 @@ function initSiteMedia() {
     const posterLink = document.getElementById('event-poster-link');
     if (!poster || !posterLink) return;
 
-    fetch('php/site-media.php', { headers: { Accept: 'application/json' } })
+    const mediaEndpoint = new URL('php/site-media.php', window.location.href);
+    mediaEndpoint.searchParams.set('t', Date.now().toString());
+
+    fetch(mediaEndpoint, { headers: { Accept: 'application/json' }, cache: 'no-store' })
         .then(response => response.ok ? response.json() : Promise.reject(new Error('Unable to load site media')))
         .then(media => {
             if (!media.poster_image) return;
-            poster.src = media.poster_image;
-            posterLink.href = media.poster_image;
+            const posterUrl = new URL(media.poster_image, window.location.href).href;
+            poster.src = posterUrl;
+            posterLink.href = posterUrl;
         })
         .catch(() => {});
 }
