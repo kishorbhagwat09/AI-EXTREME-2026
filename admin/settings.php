@@ -1,5 +1,6 @@
 <?php
 require_once dirname(__DIR__) . '/php/helpers/functions.php';
+require_once dirname(__DIR__) . '/php/helpers/validation.php';
 require_once dirname(__DIR__) . '/php/helpers/security.php';
 
 initSession();
