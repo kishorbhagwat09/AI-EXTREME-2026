@@ -38,7 +38,7 @@
     }
 
     .mobile-menu {
-        display: none;
+        display: none !important;
         position: fixed;
         top: var(--navbar-height);
         left: 0;
@@ -53,7 +53,7 @@
     }
 
     .mobile-menu.active {
-        display: flex;
+        display: flex !important;
     }
 
     .mobile-menu a {
