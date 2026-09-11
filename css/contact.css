@@ -1,0 +1,59 @@
+/* Contact Page Styles */
+
+.contact-page {
+    padding: calc(var(--navbar-height) + 60px) 0 80px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.contact-info h2 {
+    font-size: 1.75rem;
+    margin-bottom: 24px;
+}
+
+.contact-info-block {
+    margin-bottom: 32px;
+}
+
+.contact-info-block h3 {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: 8px;
+}
+
+.contact-info-block p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.contact-info-block a {
+    color: var(--accent-cyan);
+}
+
+.contact-form-card {
+    padding: 40px;
+}
+
+.contact-form-card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .contact-form-card {
+        padding: 24px;
+    }
+}

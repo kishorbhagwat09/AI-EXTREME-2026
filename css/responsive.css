@@ -1,0 +1,167 @@
+/* Responsive Styles */
+
+@media (max-width: 1024px) {
+    .info-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .highlights-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-visual {
+        height: 300px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 60px 0;
+    }
+
+    .navbar-nav,
+    .navbar-actions .btn-primary {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: var(--navbar-height);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(5, 8, 16, 0.97);
+        backdrop-filter: blur(20px);
+        z-index: 999;
+        padding: 32px 24px;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .mobile-menu.active {
+        display: flex;
+    }
+
+    .mobile-menu a {
+        font-family: var(--font-heading);
+        font-size: 1rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-primary);
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .mobile-menu .btn {
+        margin-top: 16px;
+        width: 100%;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .countdown {
+        gap: 16px;
+    }
+
+    .countdown-item {
+        min-width: 70px;
+    }
+
+    .info-cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .highlights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .timeline::before {
+        display: none;
+    }
+
+    .cta-stats {
+        gap: 24px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .info-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .event-date-card {
+        padding: 16px 24px;
+    }
+
+    .countdown-item {
+        min-width: 60px;
+    }
+
+    .about-focus {
+        grid-template-columns: 1fr;
+    }
+
+    .problem-locked {
+        padding: 40px 20px;
+    }
+
+    .cta-stats {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .glass-card {
+        padding: 24px 16px;
+    }
+}
+
+@media (max-width: 375px) {
+    .hero-title .ai-text {
+        font-size: 3.5rem;
+    }
+
+    .countdown-value {
+        font-size: 1.75rem;
+    }
+}
